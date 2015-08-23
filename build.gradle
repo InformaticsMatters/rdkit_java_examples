@@ -1,0 +1,37 @@
+description = 'Simpel RDKit Examples'
+
+def RDBASE = System.getenv('RDBASE')
+
+
+apply plugin: 'java'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    // The production code uses the SLF4J logging API at compile time
+    compile 'org.slf4j:slf4j-api:1.7.7'
+
+
+    if (RDBASE) {
+        println "$RDBASE defined - using that location for RDkit"
+        compile files("$RDBASE/Code/JavaWrappers/gmwrapper/org.RDKit.jar")
+    } else {
+        // If RDkit is not present then fall back to a copy of the library that will
+        // let us compile the code even if we can't execute it.
+        println "Using local org.RDKit.jar - will not be able to execute without RDKit being present"
+        compile files("lib/org.RDKit.jar")
+    }
+    
+    testCompile 'junit:junit:4.11'
+}
+
+
+/** Class runner. Run an individual class with somehting like this:
+ * ./gradlew -PmainClass=com.im.rdkit.examples.Example1 execute
+*/
+task execute(type:JavaExec) {
+   main = mainClass
+   classpath = sourceSets.main.runtimeClasspath
+}
