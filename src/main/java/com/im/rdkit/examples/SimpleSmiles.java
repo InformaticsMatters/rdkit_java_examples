@@ -1,7 +1,6 @@
 package com.im.rdkit.examples;
 
 import org.RDKit.RWMol;
-import org.RDKit.RDKFuncs;
 
 /**
  *
@@ -14,14 +13,13 @@ public class SimpleSmiles {
     }
 
     public static void main(String[] args) {
-        Double logp = calcLogp("Cc1ccccc1");
-        System.out.println("LogP = " + logp);
+        RWMol mol = readMol("Cc1ccccc1");
+        System.out.println("Mol: " + mol);
     }
     
-    public static double calcLogp(String smiles) {
+    public static RWMol readMol(String smiles) {
         RWMol mol = RWMol.MolFromSmiles(smiles);
-        double logp = RDKFuncs.calcMolLogP(mol);
-        return logp;
+        return mol;
     }
 
 }

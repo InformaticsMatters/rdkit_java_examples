@@ -17,7 +17,7 @@ public class MoleculeFunctions {
         RWMol mol = RWMol.MolFromSmiles(args.length == 0 ? "Cc1ccccc1" : args[0]);
         System.out.println("Input: " + mol.MolToSmiles());
         RDKFuncs.Kekulize(mol);
-        System.out.println("Keule: " + mol.MolToSmiles());
+        System.out.println("Kekule: " + mol.MolToSmiles());
         RDKFuncs.setAromaticity(mol);
         System.out.println("Aromatic: " + mol.MolToSmiles());
         RDKFuncs.addHs(mol);
