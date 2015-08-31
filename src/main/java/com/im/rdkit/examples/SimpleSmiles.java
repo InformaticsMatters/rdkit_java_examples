@@ -7,17 +7,21 @@ import org.RDKit.RDKFuncs;
  *
  * @author Tim Dudgeon <tdudgeon@informaticsmatters.com>
  */
-public class Example1 {
+public class SimpleSmiles {
 
     static {
         System.loadLibrary("GraphMolWrap");
     }
 
     public static void main(String[] args) {
-
-        RWMol mol = RWMol.MolFromSmiles("Cc1ccccc1");
-        Double logp = RDKFuncs.calcMolLogP(mol);
+        Double logp = calcLogp("Cc1ccccc1");
         System.out.println("LogP = " + logp);
+    }
+    
+    public static double calcLogp(String smiles) {
+        RWMol mol = RWMol.MolFromSmiles(smiles);
+        double logp = RDKFuncs.calcMolLogP(mol);
+        return logp;
     }
 
 }

@@ -3,4 +3,5 @@
 build
 **/.gradle
 **/.nb-gradle
-
+.DS_Store
+data
