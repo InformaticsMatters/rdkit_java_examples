@@ -17,6 +17,7 @@ public class SdfReader {
     public static void main(String[] args) {
         if (args.length == 0) {
             System.out.println("Usage: SdfReader <filename>");
+            return;
         }
         String filename = args[0];
 
@@ -34,12 +35,15 @@ public class SdfReader {
                 errors++;
             } else {
                 //double tpsa = RDKFuncs.calcTPSA(mol);
-                double mr = RDKFuncs.calcMolMR(mol);
+                //double mr = RDKFuncs.calcMolMR(mol);
                 //double logp = RDKFuncs.calcMolLogP(mol);
-                //long rings = RDKFuncs.calcNumRings(mol);
+                //long val = RDKFuncs.calcNumAromaticRings(mol);
+                //double val = RDKFuncs.calcLabuteASA(mol);
+                ROMol mur = RDKFuncs.MurckoDecompose(mol);
+                long val = mur.getAtoms().size();
                 //totRings += rings;
                 //System.out.println("LogP = " + logp);
-                sum += mr;
+                sum += val;
             }
         }
 
